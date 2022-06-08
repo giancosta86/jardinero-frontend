@@ -1,6 +1,6 @@
 {
   "name": "@giancosta86/jardinero-frontend",
-  "version": "1.1.0-rc.17",
+  "version": "1.1.0-rc.18",
   "description": "Pluggable, React-based frontend for Jardinero",
   "appName": "Jardinero",
   "engines": {
@@ -45,5 +45,28 @@
     "react-dom": "^18",
     "serve-static": "^1.15.0",
     "socket.io-client": "^4.4.1"
+  },
+  "author": {
+    "name": "Gianluca Costa",
+    "url": "https://gianlucacosta.info/",
+    "email": "gianluca@gianlucacosta.info"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giancosta86/jardinero-frontend.git"
+  },
+  "homepage": "https://github.com/giancosta86/jardinero-frontend#readme",
+  "bugs": {
+    "url": "https://github.com/giancosta86/jardinero-frontend/issues"
+  },
+  "keywords": [
+    "Jardinero",
+    "pluggable",
+    "React",
+    "frontend"
+  ],
+  "publishConfig": {
+    "access": "public"
   }
 }
