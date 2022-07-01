@@ -60,9 +60,7 @@ export const App = ({ websocketPort }: Props) => {
       />
 
       <footer>
-        Created by <a href="https://gianlucacosta.info/">Gianluca Costa</a>{" "}
-        using <a href="https://github.com/giancosta86/Eos-core">Eos-core</a> and{" "}
-        <a href="https://github.com/giancosta86/WikiPrism">WikiPrism</a>{" "}
+        Created by <a href="https://gianlucacosta.info/">Gianluca Costa</a>
       </footer>
     </div>
   );

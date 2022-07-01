@@ -5,7 +5,7 @@ const { join } = require("path");
 const serveStatic = require("serve-static");
 const finalhandler = require("finalhandler");
 
-const staticRootPath = join(__dirname, "..", "dist");
+const staticRootPath = join(__dirname, "..", "dist", "web");
 
 console.log("Serving from directory:", staticRootPath);
 

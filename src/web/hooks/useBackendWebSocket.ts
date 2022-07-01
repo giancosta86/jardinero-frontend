@@ -6,6 +6,7 @@ import {
   DictionaryStatus,
   DictionaryStatusListener
 } from "../protocol";
+import { SocketMessages } from "../../lib";
 
 type DictionaryStatusMessage = DictionaryStatus;
 type CommandResponseMessage = CommandResponse;
@@ -37,12 +38,12 @@ function createWebSocket(
       firstConnection = false;
     }
 
-    socket.emit("dictionary_status_request");
+    socket.emit(SocketMessages.dictionaryStatusRequest);
   });
 
   const registerSocketListeners = () => {
     socket.on(
-      "dictionary_status_response",
+      SocketMessages.dictionaryStatusResponse,
       (dictionaryStatusMessage: DictionaryStatusMessage) => {
         console.debug(
           "Got dictionary status! ^__^ -->",
@@ -52,10 +53,13 @@ function createWebSocket(
       }
     );
 
-    socket.on("command_response", (commandResponse: CommandResponseMessage) => {
-      console.debug("Got command response! ^__^ ->", commandResponse);
-      commandResponseListener(commandResponse);
-    });
+    socket.on(
+      SocketMessages.commandResponse,
+      (commandResponse: CommandResponseMessage) => {
+        console.debug("Got command response! ^__^ ->", commandResponse);
+        commandResponseListener(commandResponse);
+      }
+    );
   };
 
   return socket;
@@ -83,19 +87,19 @@ export function useBackendWebSocket(
 
   return {
     startPipeline() {
-      socket.emit("start_pipeline");
+      socket.emit(SocketMessages.startPipeline);
     },
 
     cancelPipeline() {
-      socket.emit("cancel_pipeline");
+      socket.emit(SocketMessages.cancelPipeline);
     },
 
     runCommand(command: string) {
-      socket.emit("run_command", command);
+      socket.emit(SocketMessages.runCommand, command);
     },
 
     refresh() {
-      socket.emit("dictionary_status_request");
+      socket.emit(SocketMessages.dictionaryStatusRequest);
     }
   };
 }

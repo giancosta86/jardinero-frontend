@@ -10,7 +10,7 @@ if (!targetDirectoryPath) {
   process.exit(1);
 }
 
-const sourceDirectoryPath = join(__dirname, "..", "dist");
+const sourceDirectoryPath = join(__dirname, "..", "dist", "web");
 
 console.log("Copying frontend files");
 console.log(`    from --> ${sourceDirectoryPath}`);

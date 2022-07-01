@@ -7,6 +7,8 @@ module.exports = merge(common, {
   devtool: "inline-source-map",
 
   devServer: {
-    overlay: true
+    client: {
+      overlay: true
+    }
   }
 });

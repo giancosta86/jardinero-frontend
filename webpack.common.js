@@ -41,10 +41,10 @@ module.exports = {
     ]
   },
 
-  entry: "./src/main.tsx",
+  entry: "./src/web/main.tsx",
 
   output: {
-    path: resolve(__dirname, "dist"),
+    path: resolve(__dirname, "dist", "web"),
     filename: `${pkg.name}.[contenthash].js`
   },
 
