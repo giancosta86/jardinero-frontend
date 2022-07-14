@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
-import {
-  CommandResponse,
-  CommandResponseListener,
-  DictionaryStatus,
-  DictionaryStatusListener
-} from "../protocol";
-import { SocketMessages } from "../../lib";
-
-type DictionaryStatusMessage = DictionaryStatus;
-type CommandResponseMessage = CommandResponse;
+import { CommandResponse, DictionaryStatus, SocketMessages } from "../../lib";
+import { CommandResponseListener, DictionaryStatusListener } from "./listeners";
 
 export interface DictionaryControl {
   startPipeline(): void;
@@ -44,18 +36,15 @@ function createWebSocket(
   const registerSocketListeners = () => {
     socket.on(
       SocketMessages.dictionaryStatusResponse,
-      (dictionaryStatusMessage: DictionaryStatusMessage) => {
-        console.debug(
-          "Got dictionary status! ^__^ -->",
-          dictionaryStatusMessage
-        );
-        dictionaryStatusListener(dictionaryStatusMessage);
+      (dictionaryStatus: DictionaryStatus) => {
+        console.debug("Got dictionary status! ^__^ -->", dictionaryStatus);
+        dictionaryStatusListener(dictionaryStatus);
       }
     );
 
     socket.on(
       SocketMessages.commandResponse,
-      (commandResponse: CommandResponseMessage) => {
+      (commandResponse: CommandResponse) => {
         console.debug("Got command response! ^__^ ->", commandResponse);
         commandResponseListener(commandResponse);
       }

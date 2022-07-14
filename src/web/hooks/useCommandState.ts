@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { CommandResponse, CommandResponseListener } from "../protocol";
+import { CommandResponse } from "../../lib";
+import { CommandResponseListener } from "./listeners";
 
 interface CommandState {
   running: boolean;

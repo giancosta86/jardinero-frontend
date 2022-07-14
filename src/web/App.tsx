@@ -5,7 +5,7 @@ import { DictionaryBox } from "./components/DictionaryBox";
 import { useBackendWebSocket } from "./hooks/useBackendWebSocket";
 import { useCommandState } from "./hooks/useCommandState";
 import logo from "./logo.svg";
-import { DictionaryStatus } from "./protocol";
+import { DictionaryStatus } from "../lib";
 import "./styles/globals.scss";
 
 interface Props {

@@ -1,6 +1,6 @@
 {
   "name": "@giancosta86/jardinero-frontend",
-  "version": "2.0.0",
+  "version": "2.1.0-rc.1",
   "description": "Pluggable, React-based frontend for Jardinero",
   "appName": "Jardinero",
   "engines": {
