@@ -9,6 +9,16 @@ const BundleAnalyzerPlugin =
 module.exports = merge(common, {
   mode: "production",
 
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /\/node_modules\//,
+        use: "ts-loader"
+      }
+    ]
+  },
+
   plugins: [
     new BundleAnalyzerPlugin({
       analyzerMode: "static",

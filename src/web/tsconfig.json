@@ -6,5 +6,9 @@
     "jsx": "react",
 
     "incremental": true
+  },
+
+  "ts-node": {
+    "swc": true
   }
 }

@@ -6,6 +6,16 @@ module.exports = merge(common, {
 
   devtool: "inline-source-map",
 
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /\/node_modules\//,
+        use: "swc-loader"
+      }
+    ]
+  },
+
   devServer: {
     client: {
       overlay: true
