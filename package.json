@@ -1,10 +1,10 @@
 {
   "name": "@giancosta86/jardinero-frontend",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Pluggable, React-based frontend for Jardinero",
   "appName": "Jardinero",
   "engines": {
-    "node": ">=17.1.0"
+    "node": ">=16.16.0"
   },
   "bin": {
     "jardinero-start-frontend": "bin/start.js",
