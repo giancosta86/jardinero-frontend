@@ -2,29 +2,50 @@
   "name": "@giancosta86/jardinero-frontend",
   "version": "2.4.0",
   "description": "Pluggable, React-based frontend for Jardinero",
-  "appName": "Jardinero",
-  "engines": {
-    "node": ">=16.16.0"
+  "keywords": [
+    "Jardinero",
+    "pluggable",
+    "React",
+    "frontend"
+  ],
+  "homepage": "https://github.com/giancosta86/jardinero-frontend#readme",
+  "bugs": "https://github.com/giancosta86/jardinero-frontend/issues",
+  "license": "MIT",
+  "author": {
+    "name": "Gianluca Costa",
+    "email": "gianluca@gianlucacosta.info",
+    "url": "https://gianlucacosta.info/"
   },
-  "bin": {
-    "jardinero-start-frontend": "bin/start.js",
-    "jardinero-copy-frontend": "bin/copy.js"
-  },
-  "main": "dist/lib",
-  "types": "dist/lib",
   "files": [
     "bin/",
     "dist/"
   ],
+  "main": "dist/lib",
+  "types": "dist/lib",
+  "bin": {
+    "jardinero-start-frontend": "bin/start.js",
+    "jardinero-copy-frontend": "bin/copy.js"
+  },
+  "repository": "giancosta86/jardinero-frontend",
   "scripts": {
-    "clean": "rimraf dist",
-    "format": "prettier --write src",
+    "clean": "rimraf dist giancosta86-*.tgz",
+    "clean:all": "yarn clean && rimraf node_modules",
+    "format": "prettier --write .",
     "check-format": "prettier --check src",
     "start": "webpack serve --config webpack.dev.js",
     "build-web": "webpack --config webpack.prod.js",
     "build-lib": "tsc -p src/lib",
     "build": "yarn check-format && concurrently \"yarn build-web\" \"yarn build-lib\"",
     "prepack": "yarn build"
+  },
+  "dependencies": {
+    "@giancosta86/unified-logging": "^1.0.2",
+    "finalhandler": "^1.2.0",
+    "fs-extra": "^10.1.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "serve-static": "^1.15.0",
+    "socket.io-client": "^4.4.1"
   },
   "devDependencies": {
     "@swc/core": "^1.2.218",
@@ -48,35 +69,9 @@
     "webpack-dev-server": "^4.9.3",
     "webpack-merge": "^5.8.0"
   },
-  "dependencies": {
-    "@giancosta86/unified-logging": "^1.0.2",
-    "finalhandler": "^1.2.0",
-    "fs-extra": "^10.1.0",
-    "react": "^18",
-    "react-dom": "^18",
-    "serve-static": "^1.15.0",
-    "socket.io-client": "^4.4.1"
+  "engines": {
+    "node": ">=16.16.0"
   },
-  "author": {
-    "name": "Gianluca Costa",
-    "url": "https://gianlucacosta.info/",
-    "email": "gianluca@gianlucacosta.info"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/giancosta86/jardinero-frontend.git"
-  },
-  "homepage": "https://github.com/giancosta86/jardinero-frontend#readme",
-  "bugs": {
-    "url": "https://github.com/giancosta86/jardinero-frontend/issues"
-  },
-  "keywords": [
-    "Jardinero",
-    "pluggable",
-    "React",
-    "frontend"
-  ],
   "publishConfig": {
     "access": "public"
   }

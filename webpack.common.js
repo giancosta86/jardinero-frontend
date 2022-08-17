@@ -55,7 +55,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: pkg.appName,
+      title: "Jardinero",
       filename: "index.html",
       favicon: "favicon.svg"
     })
