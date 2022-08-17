@@ -1,5 +1,14 @@
-node_modules/
-dist/
-/*.tgz
+/node_modules/
+/dist/
+/coverage/
+
+/giancosta86-*.tgz
+
+/yarn-debug.log*
+/yarn-error.log*
+
+/*.tsbuildinfo
+
+*.dia~
 
 /bundle-report.html
