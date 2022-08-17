@@ -2,7 +2,7 @@
 
 _Pluggable, React-based frontend for Jardinero_
 
-![Screenshot](screenshot.png)
+![Screenshot](docs/screenshot.png)
 
 [Jardinero](https://github.com/giancosta86/Jardinero) is a hybrid web architecture devoted to _linguistic analysis_ - and this package provides its **pluggable frontend**.
 
