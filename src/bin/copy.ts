@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-const { join } = require("path");
-const { copySync } = require("fs-extra");
+import { join } from "path";
+import { copySync } from "fs-extra";
+import { argv } from "process";
 
-const targetDirectoryPath = process.argv[2];
+const targetDirectoryPath = argv[2];
 
 if (!targetDirectoryPath) {
   console.error("Missing CLI argument: <target directory>");

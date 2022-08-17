@@ -23,8 +23,8 @@
   "main": "dist/lib",
   "types": "dist/lib",
   "bin": {
-    "jardinero-start-frontend": "bin/start.js",
-    "jardinero-copy-frontend": "bin/copy.js"
+    "jardinero-start-frontend": "dist/bin/start.js",
+    "jardinero-copy-frontend": "dist/bin/copy.js"
   },
   "repository": "giancosta86/jardinero-frontend",
   "scripts": {
@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "@giancosta86/unified-logging": "^1.0.2",
+    "@types/finalhandler": "^1.1.1",
     "finalhandler": "^1.2.0",
     "fs-extra": "^10.1.0",
     "react": "^18",
@@ -49,6 +50,7 @@
   },
   "devDependencies": {
     "@swc/core": "^1.2.218",
+    "@types/fs-extra": "^9.0.13",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "clean-webpack-plugin": "^4.0.0",
