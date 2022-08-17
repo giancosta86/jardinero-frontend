@@ -1,2 +1,2 @@
-export * from "./endpoints";
-export * from "./payloads";
+export { QueryParams, SocketMessages } from "./endpoints";
+export { CommandResponse, DictionaryStatus } from "./payloads";
