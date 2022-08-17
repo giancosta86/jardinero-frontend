@@ -1,6 +1,6 @@
 {
   "name": "@giancosta86/jardinero-frontend",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "Pluggable, React-based frontend for Jardinero",
   "appName": "Jardinero",
   "engines": {
@@ -49,6 +49,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@giancosta86/unified-logging": "^1.0.2",
     "finalhandler": "^1.2.0",
     "fs-extra": "^10.1.0",
     "react": "^18",

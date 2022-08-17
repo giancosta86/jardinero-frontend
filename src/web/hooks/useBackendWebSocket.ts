@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
+import { Logger } from "@giancosta86/unified-logging";
 import { CommandResponse, DictionaryStatus, SocketMessages } from "../../lib";
 import { CommandResponseListener, DictionaryStatusListener } from "./listeners";
 
@@ -13,19 +14,20 @@ export interface DictionaryControl {
 function createWebSocket(
   socketPort: number,
   dictionaryStatusListener: DictionaryStatusListener,
-  commandResponseListener: CommandResponseListener
+  commandResponseListener: CommandResponseListener,
+  logger?: Logger
 ) {
-  console.info("Now creating a websocket to port", socketPort);
+  logger?.info(`Now creating a websocket to port ${socketPort}`);
   const socket = io(`ws://localhost:${socketPort}`);
-  console.info("Socket created!");
+  logger?.info("Socket created!");
 
   let firstConnection = true;
 
   socket.on("connect", () => {
-    console.info("Socket connected! ^__^!");
+    logger?.info("Socket connected! ^__^!");
 
     if (firstConnection) {
-      console.info("Registering socket listeners!");
+      logger?.info("Registering socket listeners!");
       registerSocketListeners();
       firstConnection = false;
     }
@@ -37,7 +39,7 @@ function createWebSocket(
     socket.on(
       SocketMessages.dictionaryStatusResponse,
       (dictionaryStatus: DictionaryStatus) => {
-        console.debug("Got dictionary status! ^__^ -->", dictionaryStatus);
+        logger?.debug(`Got dictionary status! ^__^ --> ${dictionaryStatus}`);
         dictionaryStatusListener(dictionaryStatus);
       }
     );
@@ -45,7 +47,7 @@ function createWebSocket(
     socket.on(
       SocketMessages.commandResponse,
       (commandResponse: CommandResponse) => {
-        console.debug("Got command response! ^__^ ->", commandResponse);
+        logger?.debug(`Got command response! ^__^ -> ${commandResponse}`);
         commandResponseListener(commandResponse);
       }
     );
@@ -57,7 +59,8 @@ function createWebSocket(
 export function useBackendWebSocket(
   socketPort: number,
   dictionaryStatusListener: DictionaryStatusListener,
-  commandResponseListener: CommandResponseListener
+  commandResponseListener: CommandResponseListener,
+  logger?: Logger
 ): DictionaryControl {
   const [socket, _] = useState(() =>
     createWebSocket(
@@ -69,7 +72,7 @@ export function useBackendWebSocket(
 
   useEffect(() => {
     return () => {
-      console.log("Closing the socket! ^__^");
+      logger?.info("Closing the socket! ^__^");
       socket.close();
     };
   }, []);
