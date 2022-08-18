@@ -1,6 +1,7 @@
 const { resolve } = require("node:path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const pkg = require("./package.json");
 
 module.exports = {
@@ -41,7 +42,9 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".ts", ".tsx", "..."]
+    extensions: [".ts", ".tsx", "..."],
+
+    plugins: [new TsconfigPathsPlugin()]
   },
 
   performance: {

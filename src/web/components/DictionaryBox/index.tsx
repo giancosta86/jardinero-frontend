@@ -1,5 +1,5 @@
 import React from "react";
-import { DictionaryStatus } from "../../../lib";
+import { DictionaryStatus } from "@lib";
 import { PipelineBox } from "./PipelineBox";
 import { StatusBox } from "./StatusBox";
 import styles from "./index.module.scss";

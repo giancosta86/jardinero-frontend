@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
 import { Logger } from "@giancosta86/unified-logging";
-import { CommandResponse, DictionaryStatus, SocketMessages } from "../lib";
+import { CommandResponse, DictionaryStatus, SocketMessages } from "@lib";
 
 export interface DictionaryControl {
   startPipeline(): void;

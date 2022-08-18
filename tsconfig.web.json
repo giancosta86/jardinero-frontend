@@ -1,9 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-
-  "include": ["src/web"],
-
-  "compilerOptions": {
-    "target": "ES6"
-  }
-}

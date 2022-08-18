@@ -11,14 +11,7 @@ module.exports = merge(common, {
       {
         test: /\.tsx?$/,
         exclude: /\/node_modules\//,
-        use: [
-          {
-            loader: "ts-loader",
-            options: {
-              configFile: "tsconfig.web.json"
-            }
-          }
-        ]
+        use: "ts-loader"
       }
     ]
   },

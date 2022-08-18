@@ -1,5 +1,5 @@
 import React from "react";
-import { CommandResponse } from "../../../lib";
+import { CommandResponse } from "@lib";
 import styles from "./OutputBox.module.scss";
 
 export interface Props {

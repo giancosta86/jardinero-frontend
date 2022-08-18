@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import { DictionaryStatus } from "../lib";
+import { DictionaryStatus } from "@lib";
 import { CommandBox, OutputBox, useCommandState } from "./components/Command";
 import { DictionaryBox } from "./components/DictionaryBox";
 import { useBackendWebSocket } from "./useBackendWebSocket";

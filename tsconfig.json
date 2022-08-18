@@ -24,10 +24,11 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
 
-    "esModuleInterop": true
-  },
+    "esModuleInterop": true,
 
-  "ts-node": {
-    "swc": true
+    "baseUrl": ".",
+    "paths": {
+      "@lib": ["src/lib/index"]
+    }
   }
 }
