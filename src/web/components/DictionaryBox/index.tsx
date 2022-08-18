@@ -4,7 +4,7 @@ import { PipelineBox } from "./PipelineBox";
 import { StatusBox } from "./StatusBox";
 import styles from "./index.module.scss";
 
-interface Props {
+export interface Props {
   dictionaryStatus: DictionaryStatus;
   startPipeline: () => void;
   cancelPipeline: () => void;

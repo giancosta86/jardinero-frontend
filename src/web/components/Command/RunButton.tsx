@@ -2,7 +2,7 @@ import React from "react";
 import spinner from "../spinner.svg";
 import styles from "./RunButton.module.scss";
 
-interface Props {
+export interface Props {
   commandRunning: boolean;
   onClick: () => void;
 }

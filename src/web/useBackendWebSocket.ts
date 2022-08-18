@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
 import { Logger } from "@giancosta86/unified-logging";
-import { CommandResponse, DictionaryStatus, SocketMessages } from "../../lib";
-import { CommandResponseListener, DictionaryStatusListener } from "./listeners";
+import { CommandResponse, DictionaryStatus, SocketMessages } from "../lib";
 
 export interface DictionaryControl {
   startPipeline(): void;
@@ -13,8 +12,8 @@ export interface DictionaryControl {
 
 function createWebSocket(
   socketPort: number,
-  dictionaryStatusListener: DictionaryStatusListener,
-  commandResponseListener: CommandResponseListener,
+  dictionaryStatusListener: (dictionaryStatus: DictionaryStatus) => void,
+  commandResponseListener: (commandResponse: CommandResponse) => void,
   logger?: Logger
 ) {
   logger?.info(`Now creating a websocket to port ${socketPort}`);
@@ -58,8 +57,8 @@ function createWebSocket(
 
 export function useBackendWebSocket(
   socketPort: number,
-  dictionaryStatusListener: DictionaryStatusListener,
-  commandResponseListener: CommandResponseListener,
+  dictionaryStatusListener: (dictionaryStatus: DictionaryStatus) => void,
+  commandResponseListener: (commandResponse: CommandResponse) => void,
   logger?: Logger
 ): DictionaryControl {
   const [socket] = useState(() =>

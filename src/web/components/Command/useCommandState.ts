@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { CommandResponse } from "../../lib";
-import { CommandResponseListener } from "./listeners";
+import { CommandResponse } from "../../../lib";
 
-interface CommandState {
+export interface CommandState {
   running: boolean;
   startRunning: () => void;
   response: CommandResponse;
-  responseListener: CommandResponseListener;
+  responseListener: (commandResponse: CommandResponse) => void;
 }
 
 export function useCommandState(): CommandState {

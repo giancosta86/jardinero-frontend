@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { DictionaryStatus } from "../lib";
-import { CommandBox } from "./components/Command/InputBox";
-import { OutputBox } from "./components/Command/OutputBox";
+import { CommandBox, OutputBox, useCommandState } from "./components/Command";
 import { DictionaryBox } from "./components/DictionaryBox";
-import { useBackendWebSocket } from "./hooks/useBackendWebSocket";
-import { useCommandState } from "./hooks/useCommandState";
+import { useBackendWebSocket } from "./useBackendWebSocket";
 import logo from "./logo.svg";
 import "./styles/globals.scss";
 import pkg from "../../package.json";
 
-interface Props {
+export interface Props {
   websocketPort: number;
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./StatusBox.module.scss";
 
-interface Props {
+export interface Props {
   statusMessage: string | null;
   errorInPreviousPipeline: string | null;
 }

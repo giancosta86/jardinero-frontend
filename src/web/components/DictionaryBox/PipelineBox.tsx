@@ -2,7 +2,7 @@ import React from "react";
 import spinner from "../spinner.svg";
 import styles from "./PipelineBox.module.scss";
 
-interface Props {
+export interface Props {
   pipelineMessage: string | null;
   hasDictionary: boolean;
   startPipeline: () => void;
