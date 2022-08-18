@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import styles from "./InputBox.module.scss";
 import { RunButton } from "./RunButton";
+import styles from "./InputBox.module.scss";
 
 interface Props {
   runCommand: (command: string) => void;

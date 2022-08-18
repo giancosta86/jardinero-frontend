@@ -1,8 +1,8 @@
 import React from "react";
 import { DictionaryStatus } from "../../../lib";
-import styles from "./index.module.scss";
 import { PipelineBox } from "./PipelineBox";
 import { StatusBox } from "./StatusBox";
+import styles from "./index.module.scss";
 
 interface Props {
   dictionaryStatus: DictionaryStatus;

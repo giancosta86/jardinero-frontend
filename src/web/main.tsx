@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { App } from "./App";
 import { QueryParams } from "../lib";
+import { App } from "./App";
 
 function getBackendPort(): number {
   const queryParams = new URLSearchParams(window.location.search);

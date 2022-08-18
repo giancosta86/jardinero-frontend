@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import { join } from "node:path";
-import { copySync } from "fs-extra";
 import { argv } from "node:process";
+import { copySync } from "fs-extra";
 
 const targetDirectoryPath = argv[2];
 
