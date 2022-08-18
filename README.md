@@ -2,6 +2,10 @@
 
 _Pluggable, React-based frontend for Jardinero_
 
+![GitHub CI](https://github.com/giancosta86/jardinero-frontend/actions/workflows/publish-to-npm.yml/badge.svg)
+[![npm version](https://badge.fury.io/js/@giancosta86%2Fjardinero-frontend.svg)](https://badge.fury.io/js/@giancosta86%2Fjardinero-frontend)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](/LICENSE)
+
 ![Screenshot](docs/screenshot.png)
 
 **Jardinero** - in both its [TypeScript edition for NodeJS](https://github.com/giancosta86/Jardinero) and its [Flask-based Python edition](https://github.com/giancosta86/Jardinero) - is a web stack devoted to _linguistic analysis_, whose **pluggable frontend** is provided by this project.
