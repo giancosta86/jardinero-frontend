@@ -62,7 +62,7 @@ export function useBackendWebSocket(
   commandResponseListener: CommandResponseListener,
   logger?: Logger
 ): DictionaryControl {
-  const [socket, _] = useState(() =>
+  const [socket] = useState(() =>
     createWebSocket(
       socketPort,
       dictionaryStatusListener,
@@ -75,7 +75,7 @@ export function useBackendWebSocket(
       logger?.info("Closing the socket! ^__^");
       socket.close();
     };
-  }, []);
+  }, [logger, socket]);
 
   return {
     startPipeline() {

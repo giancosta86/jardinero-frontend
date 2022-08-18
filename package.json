@@ -1,6 +1,6 @@
 {
   "name": "@giancosta86/jardinero-frontend",
-  "version": "2.4.0-beta.7",
+  "version": "2.4.0",
   "description": "Pluggable, React-based frontend for Jardinero",
   "keywords": [
     "Jardinero",
@@ -31,13 +31,15 @@
     "clean": "rimraf dist coverage giancosta86-*.tgz bundle-report.html",
     "clean:all": "yarn clean && rimraf node_modules",
     "format": "prettier --write .",
+    "prepack": "yarn check-all && yarn build",
+    "check-all": "yarn check-format && yarn lint",
     "check-format": "prettier --check src",
+    "lint": "eslint . --ext .js,.ts,.jsx,.tsx,.cjs,.mjs",
     "start": "webpack serve --config webpack.dev.js",
     "build-web": "webpack --config webpack.prod.js",
     "build-lib": "tsc -p tsconfig.lib.json",
     "build-bin": "tsc -p tsconfig.bin.json",
-    "build": "yarn check-format && concurrently \"yarn build-web\" \"yarn build-lib\" \"yarn build-bin\"",
-    "prepack": "yarn build"
+    "build": "yarn check-format && concurrently \"yarn build-web\" \"yarn build-lib\" \"yarn build-bin\""
   },
   "dependencies": {
     "@giancosta86/unified-logging": "^1.0.2",
@@ -56,9 +58,14 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-helmet": "^6.1.5",
+    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/parser": "^5.33.1",
     "clean-webpack-plugin": "^4.0.0",
     "concurrently": "^7.2.2",
     "css-loader": "^6.7.1",
+    "eslint": "^8.22.0",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "html-webpack-plugin": "^5.5.0",
     "prettier": "^2.3.2",
     "rimraf": "^3.0.2",

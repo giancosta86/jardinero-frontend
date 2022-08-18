@@ -21,15 +21,15 @@ export const OutputBox = ({ commandResponse }: Props) => {
 
           <table>
             <thead>
-              {commandResponse.headers.map(header => (
-                <td>{header}</td>
+              {commandResponse.headers.map((header, index) => (
+                <td key={index}>{header}</td>
               ))}
             </thead>
             <tbody>
-              {commandResponse.rows.map(row => (
-                <tr>
-                  {row.map(cell => (
-                    <td>{cell}</td>
+              {commandResponse.rows.map((row, rowIndex) => (
+                <tr key={rowIndex}>
+                  {row.map((cell, columnIndex) => (
+                    <td key={columnIndex}>{cell}</td>
                   ))}
                 </tr>
               ))}
