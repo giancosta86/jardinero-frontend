@@ -4,19 +4,21 @@ _Pluggable, React-based frontend for Jardinero_
 
 ![Screenshot](docs/screenshot.png)
 
-[Jardinero](https://github.com/giancosta86/Jardinero) is a hybrid web architecture devoted to _linguistic analysis_ - and this package provides its **pluggable frontend**.
+**Jardinero** - in both its [TypeScript edition for NodeJS](https://github.com/giancosta86/Jardinero) and its [Flask-based Python edition](https://github.com/giancosta86/Jardinero) - is a web stack devoted to _linguistic analysis_, whose **pluggable frontend** is provided by this project.
 
 The main reasons for having a _dedicated frontend package_ are:
 
 - **clarity** and **separation of concerns**: Jardinero - which already consists of a fairly _sophisticated_ stack - can now focus just on the underlying backend
 
-- **reusability**: no matter the current backend technology, the frontend remains the same - communicating via _websockets_
+- **reusability**: whatever the current backend technology, _the frontend remains the very same_ - communicating via _websockets_
 
-**jardinero-frontend** is actually a dual package, because it contains:
+**jardinero-frontend** is actually a triple package, because it contains:
 
 - the **ready-made website**, that can be installed as a set of static files into another project
 
-- a **TypeScript library** - containing _message names_ and _payloads_ - to simplify the creation of the backend
+- **utility scripts** to easily plug the frontend into existing tech stacks
+
+- a **TypeScript library** - containing _message names_ and _payloads_ - for the _TypeScript-based backend_
 
 ## Installation
 
@@ -30,13 +32,9 @@ or
 yarn add @giancosta86/jardinero-frontend
 ```
 
+The public API entirely resides in the root package index, so you shouldn't reference specific modules.
+
 ## Basic usage
-
-All the recommended features are exported by the index file of the library - and can be imported as usual:
-
-```bash
-import {...} from @giancosta86/jardinero-frontend
-```
 
 ### Starting the development server
 
@@ -68,21 +66,21 @@ In your backend code, you'll need to:
 
 - **redirect to the frontend development server** when in _development_ mode
 
-- **serve the actual frontend files** when in _production_ mode
+- **serve the actual frontend files**, from a directory of _static files_, when in _production_ mode. To copy the frontend files to the aforementioned directory, please consider using the **jardinero-copy-frontend** script
 
 ### Development redirection
 
 When in development mode, you should _redirect_ the traffic to the frontend development server.
 
-Additionally, please remember to activate CORS for websockets when in development mode.
+Additionally, please remember to _activate CORS for websockets_ when in development mode.
 
 ## Communication protocol
 
 ### Query parameters
 
-The only query parameter expected is:
+The query parameter that should be passed to the frontend is:
 
-- **backend-port**: used in _development_ mode - when the frontend runs on a dedicated port on _localhost_ - and contains the port of the backend server, used for _websocket_ communication
+- **backend-port**: used **only** in _development_ mode - when the frontend runs on a dedicated port on _localhost_; it contains the port of the backend server, used for _websocket_ communication
 
 ### WebSocket messages - From frontend to backend
 
@@ -114,11 +112,13 @@ These are messages that the backend **can** (and should) send to the frontend:
 
   Starts the development server, listening to the given **\<port\>**, defaulting to **8080** - the very same port opened by Webpack upon `yarn start`
 
-  **Please, note**: you can also start the **Webpack dev server** - listening on port **8080** - just by running the project's **start** script:
+  **Please, note**: you can alternatively start the **Webpack dev server** - listening on port **8080** - just by running the project's **start** script:
 
   ```bash
   yarn start
   ```
+
+  However, that requires access to the project's source directory - which is why the ready-made script is usually more convenient.
 
 - ```bash
   copy-jardinero-frontend <target directory>
