@@ -7,6 +7,8 @@ import { useCommandState } from "./hooks/useCommandState";
 import logo from "./logo.svg";
 import { DictionaryStatus } from "../lib";
 import "./styles/globals.scss";
+import { Helmet } from "react-helmet";
+import pkg from "../../package.json";
 
 interface Props {
   websocketPort: number;
@@ -43,6 +45,10 @@ export const App = ({ websocketPort }: Props) => {
 
   return (
     <div className="main">
+      <Helmet>
+        <meta name="frontend-version" content={pkg.version} />
+      </Helmet>
+
       <header>
         <img className="logo" src={logo}></img>
       </header>
