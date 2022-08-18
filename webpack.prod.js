@@ -1,10 +1,7 @@
+const { join } = require("node:path");
 const { merge } = require("webpack-merge");
-const path = require("path");
-
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const common = require("./webpack.common.js");
-
-const BundleAnalyzerPlugin =
-  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = merge(common, {
   mode: "production",
@@ -14,7 +11,14 @@ module.exports = merge(common, {
       {
         test: /\.tsx?$/,
         exclude: /\/node_modules\//,
-        use: "ts-loader"
+        use: [
+          {
+            loader: "ts-loader",
+            options: {
+              configFile: "tsconfig.web.json"
+            }
+          }
+        ]
       }
     ]
   },
@@ -22,7 +26,7 @@ module.exports = merge(common, {
   plugins: [
     new BundleAnalyzerPlugin({
       analyzerMode: "static",
-      reportFilename: path.join("..", "bundle-report.html"),
+      reportFilename: join("..", "..", "bundle-report.html"),
       openAnalyzer: false
     })
   ]

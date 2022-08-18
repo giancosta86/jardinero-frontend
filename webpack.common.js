@@ -1,9 +1,7 @@
-const pkg = require("./package.json");
-
-const { resolve } = require("path");
-
+const { resolve } = require("node:path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const pkg = require("./package.json");
 
 module.exports = {
   module: {

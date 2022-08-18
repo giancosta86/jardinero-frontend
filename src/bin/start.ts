@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import { createServer } from "http";
-import { join } from "path";
+import { createServer } from "node:http";
+import { join } from "node:path";
 import serveStatic from "serve-static";
 import finalhandler from "finalhandler";
 
-const staticRootPath = join(__dirname, "..", "dist", "web");
+const staticRootPath = join(__dirname, "..", "web");
 
 console.log("Serving from directory:", staticRootPath);
 

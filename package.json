@@ -1,6 +1,6 @@
 {
   "name": "@giancosta86/jardinero-frontend",
-  "version": "2.4.0",
+  "version": "2.4.0-beta.7",
   "description": "Pluggable, React-based frontend for Jardinero",
   "keywords": [
     "Jardinero",
@@ -28,14 +28,15 @@
   },
   "repository": "giancosta86/jardinero-frontend",
   "scripts": {
-    "clean": "rimraf dist giancosta86-*.tgz",
+    "clean": "rimraf dist coverage giancosta86-*.tgz bundle-report.html",
     "clean:all": "yarn clean && rimraf node_modules",
     "format": "prettier --write .",
     "check-format": "prettier --check src",
     "start": "webpack serve --config webpack.dev.js",
     "build-web": "webpack --config webpack.prod.js",
-    "build-lib": "tsc -p src/lib",
-    "build": "yarn check-format && concurrently \"yarn build-web\" \"yarn build-lib\"",
+    "build-lib": "tsc -p tsconfig.lib.json",
+    "build-bin": "tsc -p tsconfig.bin.json",
+    "build": "yarn check-format && concurrently \"yarn build-web\" \"yarn build-lib\" \"yarn build-bin\"",
     "prepack": "yarn build"
   },
   "dependencies": {
