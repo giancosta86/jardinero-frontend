@@ -31,12 +31,12 @@ function createWebSocket(
       firstConnection = false;
     }
 
-    socket.emit(SocketMessages.dictionaryStatusRequest);
+    socket.emit(SocketMessages.DictionaryStatusRequest);
   });
 
   const registerSocketListeners = () => {
     socket.on(
-      SocketMessages.dictionaryStatusResponse,
+      SocketMessages.DictionaryStatusResponse,
       (dictionaryStatus: DictionaryStatus) => {
         logger?.debug(`Got dictionary status! ^__^ --> ${dictionaryStatus}`);
         dictionaryStatusListener(dictionaryStatus);
@@ -44,7 +44,7 @@ function createWebSocket(
     );
 
     socket.on(
-      SocketMessages.commandResponse,
+      SocketMessages.CommandResponse,
       (commandResponse: CommandResponse) => {
         logger?.debug(`Got command response! ^__^ -> ${commandResponse}`);
         commandResponseListener(commandResponse);
@@ -78,19 +78,19 @@ export function useBackendWebSocket(
 
   return {
     startPipeline() {
-      socket.emit(SocketMessages.startPipeline);
+      socket.emit(SocketMessages.StartPipeline);
     },
 
     cancelPipeline() {
-      socket.emit(SocketMessages.cancelPipeline);
+      socket.emit(SocketMessages.CancelPipeline);
     },
 
     runCommand(command: string) {
-      socket.emit(SocketMessages.runCommand, command);
+      socket.emit(SocketMessages.RunCommand, command);
     },
 
     refresh() {
-      socket.emit(SocketMessages.dictionaryStatusRequest);
+      socket.emit(SocketMessages.DictionaryStatusRequest);
     }
   };
 }

@@ -5,7 +5,7 @@ import { App } from "./App";
 
 function getBackendPort(): number {
   const queryParams = new URLSearchParams(window.location.search);
-  const backendPort = queryParams.get(QueryParams.backendPort);
+  const backendPort = queryParams.get(QueryParams.BackendPort);
 
   return Number(backendPort ?? location.port);
 }

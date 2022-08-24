@@ -1,15 +1,15 @@
-export const SocketMessages = Object.freeze({
-  dictionaryStatusRequest: "dictionary_status_request",
-  dictionaryStatusResponse: "dictionary_status_response",
-  startPipeline: "start_pipeline",
-  cancelPipeline: "cancel_pipeline",
-  runCommand: "run_command",
-  commandResponse: "command_response"
-});
+export const enum SocketMessages {
+  DictionaryStatusRequest = "dictionary_status_request",
+  DictionaryStatusResponse = "dictionary_status_response",
+  StartPipeline = "start_pipeline",
+  CancelPipeline = "cancel_pipeline",
+  RunCommand = "run_command",
+  CommandResponse = "command_response"
+}
 
-export const QueryParams = {
-  backendPort: "backend-port"
-};
+export const enum QueryParams {
+  BackendPort = "backend-port"
+}
 
 export interface DictionaryStatus {
   statusMessage: string | null;
@@ -19,6 +19,6 @@ export interface DictionaryStatus {
 
 export interface CommandResponse {
   exception: string | null;
-  headers: string[] | null;
-  rows: any[][] | null;
+  headers: readonly string[] | null;
+  rows: readonly (readonly any[])[] | null;
 }
