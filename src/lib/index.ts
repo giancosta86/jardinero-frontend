@@ -17,8 +17,10 @@ export interface DictionaryStatus {
   errorInPreviousPipeline: string | null;
 }
 
+export type DataRow = readonly any[];
+
 export interface CommandResponse {
   exception: string | null;
   headers: readonly string[] | null;
-  rows: readonly (readonly any[])[] | null;
+  rows: readonly DataRow[] | null;
 }
