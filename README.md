@@ -8,7 +8,7 @@ _Pluggable, React-based frontend for Jardinero_
 
 ![Screenshot](docs/screenshot.png)
 
-**Jardinero** - in both its [TypeScript edition for NodeJS](https://github.com/giancosta86/Jardinero) and its [Flask-based Python edition](https://github.com/giancosta86/Jardinero) - is a web stack devoted to _linguistic analysis_, whose **pluggable frontend** is provided by this project.
+**Jardinero** - in both its [TypeScript edition for NodeJS](https://github.com/giancosta86/JardineroJS) and its [Flask-based Python edition](https://github.com/giancosta86/Jardinero) - is a web stack devoted to _linguistic analysis_, whose **pluggable frontend** is provided by this project.
 
 The main reasons for having a _dedicated frontend package_ are:
 
