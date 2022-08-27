@@ -1,4 +1,4 @@
-export const enum SocketMessages {
+export enum SocketMessages {
   DictionaryStatusRequest = "dictionary_status_request",
   DictionaryStatusResponse = "dictionary_status_response",
   StartPipeline = "start_pipeline",
@@ -7,7 +7,7 @@ export const enum SocketMessages {
   CommandResponse = "command_response"
 }
 
-export const enum QueryParams {
+export enum QueryParams {
   BackendPort = "backend-port"
 }
 

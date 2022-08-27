@@ -1,6 +1,6 @@
 {
   "name": "@giancosta86/jardinero-frontend",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "Pluggable, React-based frontend for Jardinero",
   "keywords": [
     "Jardinero",
