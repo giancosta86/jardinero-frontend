@@ -11,16 +11,16 @@ export const enum QueryParams {
   BackendPort = "backend-port"
 }
 
-export interface DictionaryStatus {
+export type DictionaryStatus = {
   statusMessage: string | null;
   pipelineMessage: string | null;
   errorInPreviousPipeline: string | null;
-}
+};
 
 export type DataRow = readonly any[];
 
-export interface CommandResponse {
+export type CommandResponse = {
   exception: string | null;
   headers: readonly string[] | null;
   rows: readonly DataRow[] | null;
-}
+};
