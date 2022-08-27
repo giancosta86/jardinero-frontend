@@ -13,8 +13,7 @@ export function useCommandState(): CommandState {
 
   const [response, setResponse] = useState<CommandResponse>(() => ({
     exception: null,
-    headers: null,
-    rows: null
+    dataSet: null
   }));
 
   const responseListener = (response: CommandResponse) => {

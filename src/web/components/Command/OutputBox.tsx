@@ -13,20 +13,20 @@ export const OutputBox = ({ commandResponse }: Props) => {
         <div className={styles.errorBox}>{commandResponse.exception}</div>
       )}
 
-      {commandResponse.headers && commandResponse.rows && (
+      {commandResponse.dataSet && (
         <>
           <div className={styles.countBox}>
-            <label>Total rows: </label> {commandResponse.rows.length}
+            <label>Total rows: </label> {commandResponse.dataSet.rows.length}
           </div>
 
           <table>
             <thead>
-              {commandResponse.headers.map((header, index) => (
+              {commandResponse.dataSet.headers.map((header, index) => (
                 <td key={index}>{header}</td>
               ))}
             </thead>
             <tbody>
-              {commandResponse.rows.map((row, rowIndex) => (
+              {commandResponse.dataSet.rows.map((row, rowIndex) => (
                 <tr key={rowIndex}>
                   {row.map((cell, columnIndex) => (
                     <td key={columnIndex}>{cell}</td>
