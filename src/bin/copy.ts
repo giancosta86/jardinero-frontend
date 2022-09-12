@@ -14,9 +14,9 @@ function main(): number {
 
   const sourceDirectoryPath = join(__dirname, "..", "web");
 
-  console.log("Copying frontend files");
-  console.log(`    from --> ${sourceDirectoryPath}`);
-  console.log(`    to --> ${targetDirectoryPath}`);
+  console.info("Copying frontend files");
+  console.info(`    from --> ${sourceDirectoryPath}`);
+  console.info(`    to --> ${targetDirectoryPath}`);
 
   copySync(sourceDirectoryPath, targetDirectoryPath);
   return 0;
