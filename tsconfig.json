@@ -28,7 +28,7 @@
 
     "baseUrl": ".",
     "paths": {
-      "@lib": ["src/lib/index"]
+      "@lib/*": ["src/lib/*"]
     }
   }
 }

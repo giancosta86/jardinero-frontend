@@ -14,15 +14,17 @@ The main reasons for having a _dedicated frontend package_ are:
 
 - **clarity** and **separation of concerns**: Jardinero - which already consists of a fairly _sophisticated_ stack - can now focus just on the underlying backend
 
+- **abstraction** - because the backend can handle frontend communication **by using strongly-typed APIs**, which hide low-level details via the `FrontendWebSocketServer` class
+
 - **reusability**: whatever the current backend technology, _the frontend remains the very same_ - communicating via _websockets_
 
 **jardinero-frontend** is actually a triple package, because it contains:
 
 - the **ready-made website**, that can be installed as a set of static files into another project
 
-- **utility scripts** to easily plug the frontend into existing tech stacks
+- a **TypeScript library** - containing for _the TypeScript-based backend_
 
-- a **TypeScript library** - containing _message names_ and _payloads_ - for the _TypeScript-based backend_
+- **utility scripts** to easily plug the frontend into existing tech stacks
 
 ## Installation
 
@@ -88,7 +90,7 @@ The query parameter that should be passed to the frontend is:
 
 ### WebSocket messages - From frontend to backend
 
-The backend **must** handle a few websocket messages:
+The backend **must** handle a few websocket messages - directly or via the `FrontendWebSocket` class, which hides most of the internal details:
 
 - **dictionary_status_request** - requests the current status of the dictionary - including whether a pipeline is running
 
@@ -100,13 +102,15 @@ The backend **must** handle a few websocket messages:
 
 ### WebSocket messages - From backend to frontend
 
-These are messages that the backend **can** (and should) send to the frontend:
+These are messages that the backend **can** (and should) send to the frontend - again, if possible, via the `FrontendWebSocket` class:
 
-- **dictionary_status_response**: returns the current status of the backend dictionary - including the status of the pipeline. It must contain a payload implementing the `DictionaryStatus` interface.
+- **initialize_frontend**: initializes the frontend with details such as _the plugin name_ and _the initial query within the editor_. It must contain a payload of type `InitializationMessage`
+
+- **dictionary_status_response**: returns the current status of the backend dictionary - including the status of the pipeline. It must contain a payload of type `DictionaryStatus`
 
   This message can be sent after a **dictionary_status_request**, or in broadcast - upon specific background events such as dictionary updates
 
-* **command_response** - sent as a response to **run_command**. It must contain a payload implementing the `CommandResponse` interface
+* **command_response** - sent as a response to **run_command**. It must contain a payload of type `CommandResponse`
 
 ## Available bin scripts
 

@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { QueryParams } from "@lib";
+import { QueryParams } from "@lib/shared";
 import { App } from "./App";
 
 function getBackendPort(): number {

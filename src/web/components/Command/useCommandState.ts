@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CommandResponse } from "@lib";
+import { CommandResponse } from "@lib/shared";
 
 export interface CommandState {
   running: boolean;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
-import { DictionaryStatus } from "@lib";
+import { DictionaryStatus, InitializationMessage } from "@lib/shared";
 import { CommandBox, OutputBox, useCommandState } from "./components/Command";
 import { DictionaryBox } from "./components/DictionaryBox";
 import { useBackendWebSocket } from "./useBackendWebSocket";
@@ -12,7 +12,24 @@ export interface Props {
   websocketPort: number;
 }
 
+function computePageTitle(pluginName?: string): string {
+  const baseTitle = "Jardinero";
+
+  return pluginName ? `${baseTitle} - ${pluginName}` : baseTitle;
+}
+
 export const App = ({ websocketPort }: Props) => {
+  const [queryText, setQueryText] = useState<string>("");
+  const [pageTitle, setPageTitle] = useState<string>(computePageTitle());
+
+  const initializeFrontend = ({
+    pluginName,
+    startupQuery
+  }: InitializationMessage) => {
+    setPageTitle(computePageTitle(pluginName));
+    setQueryText(startupQuery);
+  };
+
   const [dictionaryStatus, setDictionaryStatus] = useState<DictionaryStatus>(
     () => ({
       statusMessage: null,
@@ -30,6 +47,7 @@ export const App = ({ websocketPort }: Props) => {
 
   const dictionaryControl = useBackendWebSocket(
     websocketPort,
+    initializeFrontend,
     setDictionaryStatus,
     commandResponseListener
   );
@@ -44,6 +62,7 @@ export const App = ({ websocketPort }: Props) => {
   return (
     <div className="main">
       <Helmet>
+        <title>{pageTitle}</title>
         <meta name="frontend-version" content={pkg.version} />
       </Helmet>
 
@@ -52,7 +71,12 @@ export const App = ({ websocketPort }: Props) => {
       </header>
 
       {hasDictionary && (
-        <CommandBox runCommand={runCommand} commandRunning={commandRunning} />
+        <CommandBox
+          queryText={queryText}
+          setQueryText={setQueryText}
+          runCommand={runCommand}
+          commandRunning={commandRunning}
+        />
       )}
 
       <OutputBox commandResponse={commandResponse} />

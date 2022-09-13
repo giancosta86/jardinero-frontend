@@ -1,7 +1,23 @@
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
-import { Logger } from "@giancosta86/unified-logging";
-import { CommandResponse, DictionaryStatus, SocketMessages } from "@lib";
+import {
+  CommandResponse,
+  DictionaryStatus,
+  InitializationMessage,
+  SocketMessages
+} from "@lib/shared";
+
+export type InitializationListener = (
+  initializationMessage: InitializationMessage
+) => void;
+
+export type DictionaryStatusListener = (
+  dictionaryStatus: DictionaryStatus
+) => void;
+
+export type CommandResponseListener = (
+  commandResponse: CommandResponse
+) => void;
 
 export interface DictionaryControl {
   startPipeline(): void;
@@ -12,21 +28,21 @@ export interface DictionaryControl {
 
 function createWebSocket(
   socketPort: number,
-  dictionaryStatusListener: (dictionaryStatus: DictionaryStatus) => void,
-  commandResponseListener: (commandResponse: CommandResponse) => void,
-  logger?: Logger
+  initializationListener: InitializationListener,
+  dictionaryStatusListener: DictionaryStatusListener,
+  commandResponseListener: CommandResponseListener
 ) {
-  logger?.info(`Now creating a websocket to port ${socketPort}`);
+  console.info("Now creating a websocket to port:", socketPort);
   const socket = io(`ws://localhost:${socketPort}`);
-  logger?.info("Socket created!");
+  console.info("Socket created!");
 
   let firstConnection = true;
 
   socket.on("connect", () => {
-    logger?.info("Socket connected! ^__^!");
+    console.info("Socket connected! ^__^!");
 
     if (firstConnection) {
-      logger?.info("Registering socket listeners!");
+      console.debug("Registering socket listeners!");
       registerSocketListeners();
       firstConnection = false;
     }
@@ -36,9 +52,20 @@ function createWebSocket(
 
   const registerSocketListeners = () => {
     socket.on(
+      SocketMessages.InitializeFrontend,
+      (initializationMessage: InitializationMessage) => {
+        console.debug(
+          "Got initialization message! ^__^ -->",
+          initializationMessage
+        );
+        initializationListener(initializationMessage);
+      }
+    );
+
+    socket.on(
       SocketMessages.DictionaryStatusResponse,
       (dictionaryStatus: DictionaryStatus) => {
-        logger?.debug(`Got dictionary status! ^__^ --> ${dictionaryStatus}`);
+        console.debug("Got dictionary status! ^__^ -->", dictionaryStatus);
         dictionaryStatusListener(dictionaryStatus);
       }
     );
@@ -46,7 +73,7 @@ function createWebSocket(
     socket.on(
       SocketMessages.CommandResponse,
       (commandResponse: CommandResponse) => {
-        logger?.debug(`Got command response! ^__^ -> ${commandResponse}`);
+        console.debug("Got command response! ^__^ -->", commandResponse);
         commandResponseListener(commandResponse);
       }
     );
@@ -57,13 +84,14 @@ function createWebSocket(
 
 export function useBackendWebSocket(
   socketPort: number,
-  dictionaryStatusListener: (dictionaryStatus: DictionaryStatus) => void,
-  commandResponseListener: (commandResponse: CommandResponse) => void,
-  logger?: Logger
+  initializationListener: InitializationListener,
+  dictionaryStatusListener: DictionaryStatusListener,
+  commandResponseListener: CommandResponseListener
 ): DictionaryControl {
   const [socket] = useState(() =>
     createWebSocket(
       socketPort,
+      initializationListener,
       dictionaryStatusListener,
       commandResponseListener
     )
@@ -71,10 +99,10 @@ export function useBackendWebSocket(
 
   useEffect(() => {
     return () => {
-      logger?.info("Closing the socket! ^__^");
+      console.info("Closing the socket! ^__^");
       socket.close();
     };
-  }, [logger, socket]);
+  }, [socket]);
 
   return {
     startPipeline() {
